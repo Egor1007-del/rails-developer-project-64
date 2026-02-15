@@ -3,4 +3,8 @@
 
 
 
+[![Статус Деплоя](https://img.shields.io)](https://rails-developer-project-64.onrender.com)
+
+**Посмотреть демо:** [https://rails-developer-project-64.onrender.com](https://rails-developer-project-64.onrender.com)
+
 
