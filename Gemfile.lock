@@ -158,6 +158,9 @@ GEM
     mini_portile2 (2.8.9)
     minitest (6.0.1)
       prism (~> 1.5)
+    minitest-power_assert (0.3.1)
+      minitest
+      power_assert (>= 1.1)
     msgpack (1.8.0)
     net-imap (0.6.3)
       date
@@ -186,6 +189,7 @@ GEM
       racc
     pg (1.6.3)
     pg (1.6.3-x86_64-linux)
+    power_assert (3.0.1)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -378,6 +382,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kamal
+  minitest-power_assert
   pg
   propshaft
   puma (>= 5.0)
