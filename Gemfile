@@ -41,7 +41,7 @@ gem "thruster", require: false
 
 gem "sentry-ruby"
 gem "sentry-rails"
-
+gem "slim-rails"
 
 
 group :development, :test do
@@ -54,6 +54,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "slim_lint", require: false
 end
 
 group :development do

@@ -10,3 +10,11 @@ render-build:
 
 render-start:
 	bundle exec puma -t 5:5 -p ${PORT} -e ${RACK_ENV}
+
+lint:
+	bin/rubocop -f github
+	bundle exec slim-lint app/views
+test:
+	RAILS_ENV=test bin/rails db:test:prepare test test:system
+
+ci: lint test
