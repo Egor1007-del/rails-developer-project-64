@@ -3,7 +3,7 @@
 
 
 
-[![Статус Деплоя](https://img.shields.io)](https://rails-developer-project-64.onrender.com)
+[![Статус Деплоя](https://img.shields.io/badge/Render-Deployed-success)](https://rails-developer-project-64.onrender.com)
 
 **Посмотреть демо:** [https://rails-developer-project-64.onrender.com](https://rails-developer-project-64.onrender.com)
 
