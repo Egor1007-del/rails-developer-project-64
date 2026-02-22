@@ -19,12 +19,28 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = Sentry.get_trace_propagation_meta.html_safe
   body
-    nav
-      - if user_signed_in?
-        = link_to "Выйти", destroy_user_session_path,
-          data: { turbo_method: :delete, turbo_confirm: "Вы уверены?" }
-      - else
-        = link_to "Войти", new_user_session_path
-        | |
-        = link_to "Регистрация", new_user_registration_path
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark 
+      .container-fluid
+        = link_to "MyApp", root_path, class: "navbar-brand"
+        
+        button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          span.navbar-toggler-icon 
+        
+        .collapse.navbar-collapse.justify-content-end#navbarNav
+          ul.navbar-nav.ms-auto.text-end
+            - if user_signed_in?
+              li.nav-item 
+                = link_to "Выйти", 
+                  destroy_user_session_path,
+                  class: "nav-link",
+                  data: { turbo_method: :delete, turbo_confirm: "Вы уверены?" }
+            - else
+              li.nav-item 
+                = link_to "Войти",
+                  new_user_session_path,
+                  class: "nav-link"
+              li.nav-item 
+                = link_to "Зарегистрироваться",
+                  new_user_registration_path,
+                  class: "nav-link"
     = yield
