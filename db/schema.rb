@@ -10,31 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_22_141604) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_23_152115) do
   create_table "categories", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
+    t.string "name"
     t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
     t.text "body"
     t.integer "category_id", null: false
-    t.integer "creator_id", null: false
     t.datetime "created_at", null: false
+    t.integer "creator_id", null: false
+    t.string "title"
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["creator_id"], name: "index_posts_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
