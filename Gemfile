@@ -43,6 +43,7 @@ gem "sentry-ruby"
 gem "sentry-rails"
 gem "slim-rails"
 gem "devise"
+gem "simple_form"
 
 group :development, :test do
   gem "sqlite3", ">= 2.1"

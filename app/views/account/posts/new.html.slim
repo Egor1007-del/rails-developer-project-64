@@ -1,0 +1,8 @@
+h1.h3.mb-3 Новый пост
+
+.card.shadow-sm
+  .card-body
+    = render "form", post: @post
+
+.mt-3
+  = link_to "Назад", account_posts_path, class: "btn btn-link px-0"

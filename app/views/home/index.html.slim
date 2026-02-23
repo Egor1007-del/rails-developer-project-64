@@ -1,2 +1,17 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+h1.h2.mb-3 Посты
+
+- if @posts.any?
+    .row.g-3
+        - @posts.each do |post|
+            .col-12
+                .card.shadow-sm
+                    .card-body
+                        h5.card-title.mb-1
+                            = link_to post.title, post_path(post), class: "fw-bold text-dark text-decoration-none"
+                        .small.text-muted.mb-2
+                            = "Автор: #{post.creator.email} • Категория: #{post.category.name} • #{l(post.created_at,
+                                format: :short)}"
+                        p.card-text.mb-0 = truncate(post.body, length: 220)
+- else
+    .alert.alert-info.mb-0
+        | Пока нет постов.

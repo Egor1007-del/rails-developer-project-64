@@ -1,0 +1,10 @@
+.mb-3
+  = link_to "Все посты", authenticated_root_path, class: "fw-bold text-dark"
+  = " / #{@post.category.name}"
+h1.h3.mb-2 = @post.title
+
+.card.shadow-sm
+  .card-body
+    = simple_format(@post.body)
+.small.text-muted.mb-3
+  = "Автор: #{@post.creator.email} • Категория: #{@post.category.name} • #{l(@post.created_at, format: :long)}"

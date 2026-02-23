@@ -20,7 +20,7 @@ html
     = Sentry.get_trace_propagation_meta.html_safe
   body
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-      .container-fluid
+      .container
         = link_to "MyApp", root_path, class: "navbar-brand"
 
         button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -29,6 +29,13 @@ html
         .collapse.navbar-collapse.justify-content-end#navbarNav
           ul.navbar-nav.ms-auto.text-end
             - if user_signed_in?
+              li.nav-item
+                span.nav-link.text-light
+                  = current_user.email
+              li.nav-item
+                = link_to "Новый пост",
+                  new_account_post_path,
+                  class: "nav-link"
               li.nav-item
                 = link_to "Выйти",
                   destroy_user_session_path,
@@ -43,4 +50,5 @@ html
                 = link_to "Зарегистрироваться",
                   new_user_registration_path,
                   class: "nav-link"
-    = yield
+    main.container.py-4
+      = yield

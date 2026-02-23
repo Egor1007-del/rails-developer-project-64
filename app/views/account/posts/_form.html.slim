@@ -1,0 +1,16 @@
+= simple_form_for [ :account, post ] do |f|
+  = f.error_notification
+
+  .mb-3
+    = f.input :title, label: "Заголовок", required: false
+
+  .mb-3
+    = f.input :body, as: :text, input_html: { rows: 6 }, label: "Teкст", required: false
+
+  .mb-3
+    = f.association :category,
+        collection: Category.order(:name),
+        prompt: "Выберите категорию",
+        label: "Категории"
+
+  = f.button :submit, "Сохранить", class: "btn btn-primary"

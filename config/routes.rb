@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  root "home#index"
   devise_for :users
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  authenticated :user do
+    root "account/posts#index", as: :authenticated_root
+  end
+  root "home#index"
+
+  namespace :account do
+    resources :posts, only: %i[index new create show]
+  end
+
+  resources :posts, only: %i[index show]
 end
