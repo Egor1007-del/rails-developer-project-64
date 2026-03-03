@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    root "account/posts#index", as: :authenticated_root
+    root "home#index", as: :authenticated_root
   end
   root "home#index"
 
@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index new create show]
   end
 
-  resources :posts, only: %i[show]
+  resources :posts, only: %i[show] do
+    resources :comments, only: %i[create]
+  end
 end

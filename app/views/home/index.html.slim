@@ -1,17 +1,19 @@
-h1.h2.mb-3 Посты
+.d-flex.justify-content-between.align-items-center.mb-3
+    h1.h2.mb-3 Посты
 
 - if @posts.any?
-    .row.g-3
-        - @posts.each do |post|
-            .col-12
-                .card.shadow-sm
-                    .card-body
-                        h5.card-title.mb-1
-                            = link_to post.title, post_path(post), class: "fw-bold text-dark text-decoration-none"
-                        .small.text-muted.mb-2
-                            = "Автор: #{post.creator.email} • Категория: #{post.category.name} • #{l(post.created_at,
-                                format: :short)}"
-                        p.card-text.mb-0 = truncate(post.body, length: 220)
+  .row.g-3
+    - @posts.each do |post|
+      .col-12.col-md-6.col-lg-6
+        .card.h-100.shadow-sm
+          .card-body
+            h5.card-title.mb-1
+              = link_to post.title, post_path(post), class: "fw-bold text-dark text-decoration-none"
+            .small.text-muted.mb-2
+              = [ "Автор: #{post.creator&.email || 'Аноним'}",
+                  "Категория: #{post.category&.name || 'Без категории'}",
+                  l(post.created_at, format: :short) ].join(" • ")
+            p.card-text.mb-0 = truncate(post.body, length: 220)
 - else
-    .alert.alert-info.mb-0
-        | Пока нет постов.
+  .alert.alert-info.mb-0
+    | Пока нет постов.

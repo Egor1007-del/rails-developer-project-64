@@ -1,5 +1,5 @@
 .mb-3
-  = link_to "Назад к списку", root_path, class: "btn btn-outline-secondary"
+  = link_to "<< Назад к списку", root_path, class: "btn btn-outline-secondary"
 
 h1.h3.mb-2 = @post.title
 
@@ -8,3 +8,24 @@ h1.h3.mb-2 = @post.title
     = simple_format(@post.body)
 .small.text-muted.mb-3
   = "Автор: #{@post.creator.email} • Категория: #{@post.category.name} • #{l(@post.created_at, format: :long)}"
+
+- if user_signed_in?
+  = simple_form_for @comment, url: post_comments_path(@post) do |f|
+    = f.input :content, label: false, placeholder: "Комментарий"
+    = f.hidden_field :parent_id
+    = f.button :submit, "Отправить", class: "btn btn-outline-secondary"
+- else
+  p
+    = link_to "Войдите", new_user_session_path
+    |  чтобы оставить комментарий
+
+h4.mt-3 Комментарии
+
+- if @comments.present?
+  - @comments.each do |comment, children|
+    = render "comments/comment",
+      post: @post,
+      comment: comment,
+      children: children
+- else
+  p.text-muted Пока нет комментариев...

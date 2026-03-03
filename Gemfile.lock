@@ -77,6 +77,9 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.8)
       public_suffix (>= 2.0.2, < 8.0)
+    ancestry (5.0.0)
+      activerecord (>= 5.2.6)
+      logger
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.21)
@@ -396,6 +399,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ancestry
   blueprint-html2slim
   bootsnap
   brakeman
