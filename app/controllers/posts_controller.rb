@@ -9,7 +9,5 @@ class PostsController < ApplicationController
     @comment = PostComment.new
     @comment.parent_id = params[:parent_id] if params[:parent_id].present?
     @comments = @post.post_comments.arrange(order: :created_at)
-
-    @reply_to = params[:reply_to].presence&.to_i
   end
 end

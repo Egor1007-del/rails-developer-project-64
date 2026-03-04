@@ -11,3 +11,25 @@ two:
   post: two
   content: MyText
   materialized_path2: MyString
+
+root_comment:
+  id: <%= ActiveRecord::FixtureSet.identify(:root_comment) %>
+  post: one
+  user: one
+  content: "Root comment"
+  materialized_path2: ""
+
+reply_1:
+  id: <%= ActiveRecord::FixtureSet.identify(:reply_1) %>
+  post: one
+  user: one
+  content: "Reply level 1"
+  materialized_path2: "/<%= ActiveRecord::FixtureSet.identify(:root_comment) %>/"
+
+reply_2:
+  id: <%= ActiveRecord::FixtureSet.identify(:reply_2) %>
+  post: one
+  user: one
+  content: "Reply level 2"
+  materialized_path2: "/<%= ActiveRecord::FixtureSet.identify(:root_comment) %>/<%= ActiveRecord::FixtureSet.identify(:reply_1) %>/"
+  

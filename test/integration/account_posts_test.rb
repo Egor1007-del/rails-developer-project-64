@@ -5,9 +5,9 @@ class AccountPostsTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
-  test "GET /account/posts for signed in user" do
+  test "GET /post for signed in user" do
     sign_in users(:one)
-    get account_posts_path
+    get post_path(posts(:one))
     assert { response.status == 200 }
   end
 
