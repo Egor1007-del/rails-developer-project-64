@@ -3,3 +3,5 @@ linters:
     max: 120
   RuboCop:
     enabled: true
+  TrailingWhitespace:
+    enabled: false

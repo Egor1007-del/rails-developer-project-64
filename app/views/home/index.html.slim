@@ -10,7 +10,7 @@
             h5.card-title.mb-1
               = link_to post.title, post_path(post), class: "fw-bold text-dark text-decoration-none"
             .small.text-muted.mb-2
-              = [ "Автор: #{post.creator&.email || 'Аноним'}",
+              = [ "Автор: #{post.creator&.email.split("@").first || 'Аноним'}",
                   "Категория: #{post.category&.name || 'Без категории'}",
                   l(post.created_at, format: :short) ].join(" • ")
             p.card-text.mb-0 = truncate(post.body, length: 220)
