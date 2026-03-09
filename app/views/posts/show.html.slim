@@ -17,12 +17,12 @@ h1.h3.mb-2 = @post.title
     - if user_signed_in?
       - if @liked_by_me
         = button_to "♥",
-          post_like_path(@post),
+          post_likes_path(@post),
           method: :delete,
           class: "btn btn-sm btn-outline-danger"
       - else
         = button_to "♡",
-          post_like_path(@post),
+          post_likes_path(@post),
           method: :post,
           class: "btn btn-sm btn-outline-secondary"
 

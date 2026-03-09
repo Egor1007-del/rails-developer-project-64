@@ -13,7 +13,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    current_user.post_likes.find_by!(post: @post).destroy
+    @post_like = current_user.post_likes.find(params[:id])
+    @post_like.destroy
     redirect_to post_path(@post), notice: "Лайк убран"
   end
 
