@@ -16,11 +16,11 @@ h1.h3.mb-2 = @post.title
 
     - if user_signed_in?
       - if @liked_by_me
-        - current_like = @post.post_likes.find_by(user: current_user)
+        - current_like = @post.likes.find_by(user: current_user)
         = button_to "♥",
           post_like_path(@post, current_like),
           method: :delete,
-          class: "btn btn-sm btn-outline-danger"
+          class: "btn btn-sm btn-outline-danger" if current_like
       - else
         = button_to "♡",
           post_likes_path(@post),

@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
 
     @comment = PostComment.new
     @comment.parent_id = params[:parent_id] if params[:parent_id].present?

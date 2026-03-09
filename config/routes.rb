@@ -6,11 +6,7 @@ Rails.application.routes.draw do
   end
   root "home#index"
 
-  namespace :account do
-    resources :posts, only: %i[index new create show]
-  end
-
-  resources :posts, only: %i[show] do
+  resources :posts, only: %i[new create show] do
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create]
   end
