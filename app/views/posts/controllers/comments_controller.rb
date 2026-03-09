@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
@@ -9,7 +11,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to post_path(@post), notice: "Комментарий добавлен"
+      redirect_to post_path(@post), notice: 'Комментарий добавлен'
     else
       redirect_to post_path(@post), alert: @comment.errors.full_messages.to_sentence
     end

@@ -1,10 +1,12 @@
-puts "SEED START"
+# frozen_string_literal: true
 
-categories = [
-  "Новости",
-  "Обучение",
-  "Разработка",
-  "Безопасность"
+puts 'SEED START'
+
+categories = %w[
+  Новости
+  Обучение
+  Разработка
+  Безопасность
 ]
 
 categories.each do |name|
@@ -12,4 +14,4 @@ categories.each do |name|
   puts "CREATED: #{category.name}"
 end
 
-puts "SEED END"
+puts 'SEED END'

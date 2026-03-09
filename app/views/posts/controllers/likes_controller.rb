@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
@@ -6,16 +8,16 @@ class LikesController < ApplicationController
     @like = current_user.likes.new(post: @post)
 
     if @like.save
-      redirect_to post_path(@post), notice: "Лайк поставлен"
+      redirect_to post_path(@post), notice: 'Лайк поставлен'
     else
-      redirect_to post_path(@post), alert: @post_path.errors.full_messages.to_presence || "Не удалось поставить лайк"
+      redirect_to post_path(@post), alert: @post_path.errors.full_messages.to_presence || 'Не удалось поставить лайк'
     end
   end
 
   def destroy
     @like = current_user.likes.find(params[:id])
     @like&.destroy
-    redirect_to post_path(@post), notice: "Лайк убран"
+    redirect_to post_path(@post), notice: 'Лайк убран'
   end
 
   private

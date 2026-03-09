@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    root "home#index", as: :authenticated_root
+    root 'home#index', as: :authenticated_root
   end
-  root "home#index"
+  root 'home#index'
 
   resources :posts, only: %i[new create show] do
     resources :likes, only: %i[create destroy]

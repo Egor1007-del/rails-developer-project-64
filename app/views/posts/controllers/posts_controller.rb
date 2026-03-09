@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[index new create]
   def index
@@ -12,7 +14,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to root_path, notice: "Пост создан"
+      redirect_to root_path, notice: 'Пост создан'
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,6 +32,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:title, :body, :category_id)
   end
