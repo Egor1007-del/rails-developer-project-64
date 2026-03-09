@@ -4,13 +4,13 @@ one:
   user: one
   post: one
   content: MyText
-  materialized_path2: MyString
+  materialized_path2: ""
 
 two:
   user: two
   post: two
   content: MyText
-  materialized_path2: MyString
+  materialized_path2: ""
 
 root_comment:
   id: <%= ActiveRecord::FixtureSet.identify(:root_comment) %>
