@@ -1,8 +1,8 @@
 .card.mb-2
   .card-header.bg-secondary.text-white
     = comment.user.email
-    |  
-    = l(comment.created_at, format: :short)
+    |
+    =< l(comment.created_at, format: :short)
 
   .card-body = comment.content
 

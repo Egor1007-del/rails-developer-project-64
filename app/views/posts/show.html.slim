@@ -11,9 +11,8 @@ h1.h3.mb-2 = @post.title
     = "Автор: #{@post.creator.email} • Категория: #{@post.category.name} • #{l(@post.created_at, format: :long)}"
   .d-flex.align-items-center.gap-2
     span.text-muted.small
-      |♥ 
-      = @likes_count
-
+      |♥
+      =< @likes_count
     - if user_signed_in?
       - if @liked_by_me
         - current_like = @post.likes.find_by(user: current_user)
