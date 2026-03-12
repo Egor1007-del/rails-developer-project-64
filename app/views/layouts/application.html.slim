@@ -17,7 +17,7 @@ html
     / Includes all stylesheet files in app/assets/stylesheets
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
-    == Sentry.get_trace_propagation_meta.html_safe
+    = Sentry.get_trace_propagation_meta
   body
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       .container
