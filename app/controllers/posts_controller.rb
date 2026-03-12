@@ -25,17 +25,15 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to root_path, notice: t("post.created")
+      redirect_to root_path, notice: t('post.created')
     else
       render :new, status: :unprocessable_content
     end
   end
 
-
-
   private
 
   def post_params
-    params.expect(post: [ :title, :body, :category_id ])
+    params.expect(post: %i[title body category_id])
   end
 end

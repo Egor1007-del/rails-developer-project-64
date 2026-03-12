@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to post_path(@post), notice: t("comment.added")
+      redirect_to post_path(@post), notice: t('comment.added')
     else
       redirect_to post_path(@post), alert: @comment.errors.full_messages.to_sentence
     end

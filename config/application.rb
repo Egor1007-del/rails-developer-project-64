@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,7 +13,7 @@ module RailsDeveloperProject64
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
     config.i18n.default_locale = :en
-    config.i18n.available_locales = [ :en, :ru ]
+    config.i18n.available_locales = %i[en ru]
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
