@@ -1,0 +1,8 @@
+ru:
+  comment:
+    added: "Комментарий добавлен"
+  like:
+    create: "Лайк поставлен"
+    removed: "Лайк убран"
+  post:
+    created: "Пост создан"

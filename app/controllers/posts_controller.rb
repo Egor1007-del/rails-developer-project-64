@@ -6,20 +6,6 @@ class PostsController < ApplicationController
     @posts = current_user.posts.includes(:category).order(created_at: :desc)
   end
 
-  def new
-    @post = current_user.posts.build
-  end
-
-  def create
-    @post = current_user.posts.build(post_params)
-
-    if @post.save
-      redirect_to root_path, notice: 'Пост создан'
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
   def show
     @post = Post.find(params[:id])
 
@@ -31,9 +17,25 @@ class PostsController < ApplicationController
     @likes_count = @post.likes.count
   end
 
+  def new
+    @post = current_user.posts.build
+  end
+
+  def create
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
+      redirect_to root_path, notice: t("post.created")
+    else
+      render :new, status: :unprocessable_content
+    end
+  end
+
+
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id)
+    params.expect(post: [ :title, :body, :category_id ])
   end
 end

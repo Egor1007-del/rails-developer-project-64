@@ -19,14 +19,14 @@ root_comment:
   content: "Root comment"
   ancestry: ""
 
-reply_1:
+reply1:
   id: <%= ActiveRecord::FixtureSet.identify(:reply_1) %>
   post: one
   user: one
   content: "Reply level 1"
   ancestry: "/<%= ActiveRecord::FixtureSet.identify(:root_comment) %>/"
 
-reply_2:
+reply2:
   id: <%= ActiveRecord::FixtureSet.identify(:reply_2) %>
   post: one
   user: one

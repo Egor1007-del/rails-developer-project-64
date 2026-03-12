@@ -8,16 +8,16 @@ class LikesController < ApplicationController
     @like = current_user.likes.new(post: @post)
 
     if @like.save
-      redirect_to post_path(@post), notice: 'Лайк поставлен'
+      redirect_to post_path(@post), notice: t("like.create")
     else
-      redirect_to post_path(@post), alert: @post_path.errors.full_messages.to_presence || 'Не удалось поставить лайк'
+      redirect_to post_path(@post), alert: @post_path.errors.full_messages.to_presence || "Не удалось поставить лайк"
     end
   end
 
   def destroy
     @like = current_user.likes.find_by(params[:id])
     @like&.destroy
-    redirect_to post_path(@post), notice: 'Лайк убран'
+    redirect_to post_path(@post), notice: t("like.removed")
   end
 
   private
