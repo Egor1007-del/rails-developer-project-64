@@ -1,7 +1,19 @@
 linters:
   LineLength:
-    max: 120
-  RuboCop:
     enabled: true
+    max: 120
   TrailingWhitespace:
     enabled: false
+  RuboCop:
+    enabled: true
+    configuration:
+      Style/StringLiterals:
+        Enabled: false
+      Style/StringLiteralsInInterpolation:
+        Enabled: false
+      Layout/SpaceAroundBlockParameters:
+        Enabled: false
+      Style/MultilineIfModifier:
+        Enabled: false
+      Layout/SpaceInsideArrayLiteralBrackets:
+        Enabled: false
