@@ -52,5 +52,19 @@ html
                 = link_to "Зарегистрироваться",
                   new_user_registration_path,
                   class: "nav-link"
+
+    - flash.each do |type, message|
+      .container.mt-3
+        - if type.to_sym == :notice
+          .alert.alert-success
+            = message
+        - elsif type.to_sym == :alert
+          .alert.alert-danger
+            = message
+        - else 
+          .alert.alert-secondary
+            = message
+
+
     main.container.py-4
       = yield
