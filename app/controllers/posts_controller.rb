@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.arrange(order: :created_at)
 
     @liked_by_me = user_signed_in? && @post.likes.exists?(user_id: current_user.id)
-    @likes_count = @post.likes.count
+    @likes_count = @post.likes_count
   end
 
   def new
