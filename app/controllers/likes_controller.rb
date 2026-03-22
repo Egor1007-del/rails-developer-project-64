@@ -5,19 +5,14 @@ class LikesController < ApplicationController
   before_action :set_post
 
   def create
-    @like = current_user.likes.new(post: @post)
-
-    if @like.save
-      redirect_to post_path(@post), notice: t('like.create')
-    else
-      redirect_to post_path(@post), alert: @post_path.errors.full_messages.to_presence || 'Не удалось поставить лайк'
-    end
+    @post.likes.find_or_create_by(user: current_user)
+    redirect_to post_path(@post)
   end
 
   def destroy
     @like = current_user.likes.find_by(id: params[:id])
     @like&.destroy
-    redirect_to post_path(@post), notice: t('like.removed')
+    redirect_to post_path(@post), notice: t('.success')
   end
 
   private

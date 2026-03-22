@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index new create]
-  def index
-    @posts = current_user.posts.includes(:category).order(created_at: :desc)
-  end
+  before_action :authenticate_user!, only: %i[new create]
 
   def show
     @post = Post.find(params[:id])
@@ -25,7 +22,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to root_path, notice: t('post.created')
+      redirect_to post_path(@post), notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end

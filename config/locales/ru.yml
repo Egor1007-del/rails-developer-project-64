@@ -8,6 +8,7 @@ ru:
     models:
       post: "Пост"
       category: "Категория"
+      post_comment: "Комментарий"
 
     attributes:
       user:
@@ -22,6 +23,9 @@ ru:
 
       category:
         name: "Название"
+      
+      post_comment:
+        content: "Комментарий"
 
     errors:
       models:
@@ -33,6 +37,11 @@ ru:
               blank: "не может быть пустым"
             category:
               required: "должна быть выбрана"
+        post_comment:
+          attributes:
+            content:
+              blank: "не может быть пустым"
+              
   time:
     formats:
       short: "%d.%m.%Y %H:%M"
@@ -52,19 +61,7 @@ ru:
       - октября
       - ноября
       - декабря
-            
 
-
-
-  comment:
-    added: "Комментарий добавлен"
-  like:
-    create: "Лайк поставлен"
-    removed: "Лайк убран"
-  post:
-    created: "Пост создан"
-
-  
   comments:
     reply: "Ответить"
     reply_placeholder: "Ответ..."
@@ -78,6 +75,8 @@ ru:
     show:
       sign_in_to_comment: "чтобы оставить комментарий"
       no_comments: "Пока нет коментариев..."
+    create:
+      success: "Комментарий добавлен"
 
   posts:
     index:
@@ -97,6 +96,13 @@ ru:
       back: "<< Назад к списку"
       author: "Автор: %{author}"
       category: "Категория: %{category}"
+    create:
+      success: "Пост создан"
+
+  likes:
+    destroy:
+      success: "Лайк убран"
+
   nav:
     new_post: "Новый пост"
     sign_out: "Выйти"
