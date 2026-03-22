@@ -1,5 +1,5 @@
 .d-flex.justify-content-between.align-items-center.mb-3
-    h1.h2.mb-3 = t('post.posts')
+    h1.h2.mb-3 = t('posts.index.title')
 
 - if @posts.any?
   .row.g-3
@@ -10,10 +10,10 @@
             h5.card-title.mb-1
               = link_to post.title, post_path(post), class: "fw-bold text-dark text-decoration-none"
             .small.text-muted.mb-2
-              = [ "Автор: #{post.creator&.email&.split("@")&.first || 'Аноним'}",
-                  "Категория: #{post&.category&.name || 'Без категории'}",
-                  l(post.created_at, format: :short) ].join(" • ")
+              = [ t('posts.index.author', author: post.creator&.email&.split('@')&.first || t('posts.index.anonymous')),
+                t('posts.index.category', category: post.category&.name || t('posts.index.without_category')),
+                l(post.created_at, format: :short)].join(" • ")
             p.card-text.mb-0 = truncate(post.body, length: 220)
 - else
   .alert.alert-info.mb-0
-    | Пока нет постов.
+    = t('posts.index.empty')

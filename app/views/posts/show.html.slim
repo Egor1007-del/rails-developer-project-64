@@ -1,5 +1,5 @@
 .mb-3
-  = link_to "<< Назад к списку", root_path, class: "btn btn-outline-secondary"
+  = link_to t('posts.show.back'), root_path, class: "btn btn-outline-secondary"
 
 h1.h3.mb-2 = @post.title
 
@@ -8,7 +8,9 @@ h1.h3.mb-2 = @post.title
     = simple_format(@post.body)
 .d-flex.justify-content-between.align-items-center.mb-3
   .small.text-muted.mb-3
-    = "Автор: #{@post.creator.email} • Категория: #{@post.category.name} • #{l(@post.created_at, format: :long)}"
+    = [ t('posts.show.author', author: @post.creator.email), t('posts.show.category', 
+      category: @post.category.name), 
+      l(@post.created_at, format: :long)].join(' • ')
   .d-flex.align-items-center.gap-2
     span.text-muted.small
       |♥
@@ -28,15 +30,15 @@ h1.h3.mb-2 = @post.title
 
 - if user_signed_in?
   = simple_form_for @comment, url: post_comments_path(@post) do |f|
-    = f.input :content, label: false, placeholder: "Комментарий"
+    = f.input :content, label: false, placeholder: t('comments.form.placeholder')
     = f.hidden_field :parent_id
-    = f.button :submit, "Отправить", class: "btn btn-outline-secondary"
+    = f.button :submit, t('comments.form.submit'), class: "btn btn-outline-secondary"
 - else
   p
-    = link_to "Войдите", new_user_session_path
-    |  чтобы оставить комментарий
+    = link_to t('auth.sign_in'), new_user_session_path
+    = " #{t('comments.show.sign_in_to_comment')}"
 
-h4.mt-3 Комментарии
+h4.mt-3 = t('comments.index.title')
 
 - if @comments.present?
   - @comments.each do |comment, children|
@@ -45,4 +47,4 @@ h4.mt-3 Комментарии
       comment: comment,
       children: children
 - else
-  p.text-muted Пока нет комментариев...
+  p.text-muted = t('comments.show.no_comments')

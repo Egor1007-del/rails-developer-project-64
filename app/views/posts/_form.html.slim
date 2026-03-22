@@ -2,15 +2,15 @@
   = f.error_notification
 
   .mb-3
-    = f.input :title, label: "Заголовок", required: false
+    = f.input :title, label: t("activerecord.attributes.post.title"), required: false
 
   .mb-3
-    = f.input :body, as: :text, input_html: { rows: 6 }, label: "Teкст", required: false
+    = f.input :body, as: :text, input_html: { rows: 6 }, label: t('activerecord.attributes.post.body'), required: false
 
   .mb-3
     = f.association :category,
         collection: Category.order(:name),
-        prompt: "Выберите категорию",
-        label: "Категории"
+        prompt:  t('posts.form.category_prompt'),
+        label: t("activerecord.attributes.post.category")
 
-  = f.button :submit, "Сохранить", class: "btn btn-primary"
+  = f.button :submit, t("posts.form.submit"), class: "btn btn-primary"

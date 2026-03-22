@@ -1,8 +1,8 @@
-h1.h3.mb-3 Новый пост
+h1.h3.mb-3 = t("posts.new.title")
 
 .card.shadow-sm
   .card-body
     = render "form", post: @post
 
 .mt-3
-  = link_to "Назад", root_path, class: "btn btn-link px-0"
+  = link_to t("posts.new.back"), root_path, class: "btn btn-link px-0"

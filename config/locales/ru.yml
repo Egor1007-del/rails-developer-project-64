@@ -1,14 +1,24 @@
 ru:
+  app:
+    name: "MyApp"
+  auth:
+    sign_in: "Войдите"
+
   activerecord:
     models:
       post: "Пост"
       category: "Категория"
 
     attributes:
+      user:
+        email: "Электронная почта"
+        password: "Пароль"
+        remember_me: "Запомнить меня"
+
       post:
         title: "Заголовок"
         body: "Содержание"
-        category: "Категория"
+        category: "Категории"
 
       category:
         name: "Название"
@@ -53,5 +63,44 @@ ru:
     removed: "Лайк убран"
   post:
     created: "Пост создан"
-    posts: "Посты"
+
+  
+  comments:
+    reply: "Ответить"
+    reply_placeholder: "Ответ..."
+    submit: "Оставить комментарий"
+    cancel: "Отмена"
+    index:
+      title: "Комментарии"
+    form:
+      placeholder: "Комментарий"
+      submit: "Отправить"
+    show:
+      sign_in_to_comment: "чтобы оставить комментарий"
+      no_comments: "Пока нет коментариев..."
+
+  posts:
+    index:
+      title: "Посты"
+      author: "Автор: %{author}"
+      category: "Категория: %{category}"
+      anonymous: "Аноним"
+      without_category: "Без категории"
+      empty: "Пока нет постов."
+    form:
+      category_prompt: "Выберите категорию"
+      submit: "Сохранить"
+    new:
+      back: "Назад"
+      title: "Новый пост"
+    show:
+      back: "<< Назад к списку"
+      author: "Автор: %{author}"
+      category: "Категория: %{category}"
+  nav:
+    new_post: "Новый пост"
+    sign_out: "Выйти"
+    sign_in: "Войти"
+    sign_up: "Зарегистрироваться"
+    confirm: "Вы уверены?"
   

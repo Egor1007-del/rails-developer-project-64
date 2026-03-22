@@ -23,7 +23,7 @@ html
   body
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       .container
-        = link_to "MyApp", root_path, class: "navbar-brand"
+        = link_to t("app.name"), root_path, class: "navbar-brand"
 
         button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           span.navbar-toggler-icon
@@ -35,21 +35,21 @@ html
                 span.nav-link.text-light
                   = current_user.email
               li.nav-item
-                = link_to "Новый пост",
+                = link_to t('nav.new_post'),
                   new_post_path,
                   class: "nav-link"
               li.nav-item
-                = link_to "Выйти",
+                = link_to t('nav.sign_out'),
                   destroy_user_session_path,
                   class: "nav-link",
-                  data: { turbo_method: :delete, turbo_confirm: "Вы уверены?" }
+                  data: { turbo_method: :delete, turbo_confirm: t('nav.confirm') }
             - else
               li.nav-item
-                = link_to "Войти",
+                = link_to t('nav.sign_in'),
                   new_user_session_path,
                   class: "nav-link"
               li.nav-item
-                = link_to "Зарегистрироваться",
+                = link_to t('nav.sign_up'),
                   new_user_registration_path,
                   class: "nav-link"
 
