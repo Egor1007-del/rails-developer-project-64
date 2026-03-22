@@ -3,20 +3,20 @@
 one:
   user: one
   post: one
-  content: MyText
+  content: MyText MyText MyText MyText
   ancestry: ""
 
 two:
   user: two
   post: two
-  content: MyText
+  content: MyText MyText MyText MyText
   ancestry: ""
 
 root_comment:
   id: <%= ActiveRecord::FixtureSet.identify(:root_comment) %>
   post: one
   user: one
-  content: "Root comment"
+  content: "Root comment Root comment"
   ancestry: ""
 
 reply1:

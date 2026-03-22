@@ -35,8 +35,8 @@ class PostsTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count', 1) do
       post posts_path, params: {
         post: {
-          title: 'Test title',
-          body: 'Test body',
+          title: 'Test title Test title',
+          body: 'Test body Test body',
           category_id: categories(:one).id
         }
       }
@@ -44,8 +44,8 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     created_post = Post.order(:created_at).last
 
-    assert_equal 'Test title', created_post.title
-    assert_equal 'Test body', created_post.body
+    assert_equal 'Test title Test title', created_post.title
+    assert_equal 'Test body Test body', created_post.body
     assert_equal categories(:one).id, created_post.category_id
     assert_equal users(:one).id, created_post.creator_id
 
