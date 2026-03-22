@@ -6,5 +6,5 @@ class PostComment < ApplicationRecord
 
   has_ancestry orphan_strategy: :restrict
 
-  validates :content, presence: true
+  validates :content, presence: true, length: { minimum: 2, maximum: 500 }
 end
