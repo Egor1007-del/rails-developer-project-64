@@ -28,6 +28,8 @@ ru:
         content: "Комментарий"
 
     errors:
+      messages:
+        too_short: "слишком короткое (минимум 10 символов)"
       models:
         post:
           attributes:

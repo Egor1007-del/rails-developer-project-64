@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
+  before_action :set_categories, only: %i[new create]
 
   def show
     @post = Post.find(params[:id])
@@ -32,5 +33,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.expect(post: %i[title body category_id])
+  end
+
+  def set_categories
+    @categories = Category.order(:name)
   end
 end
