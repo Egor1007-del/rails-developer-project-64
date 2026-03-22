@@ -1,4 +1,51 @@
 ru:
+  activerecord:
+    models:
+      post: "Пост"
+      category: "Категория"
+
+    attributes:
+      post:
+        title: "Заголовок"
+        body: "Содержание"
+        category: "Категория"
+
+      category:
+        name: "Название"
+
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: "не может быть пустым"
+            body:
+              blank: "не может быть пустым"
+            category:
+              required: "должна быть выбрана"
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M"
+      long: "%d %B %Y, %H:%M"
+  date:
+    month_names:
+      -
+      - января
+      - февраля
+      - марта
+      - апреля
+      - мая
+      - июня
+      - июля
+      - августа
+      - сентября
+      - октября
+      - ноября
+      - декабря
+            
+
+
+
   comment:
     added: "Комментарий добавлен"
   like:
@@ -6,3 +53,5 @@ ru:
     removed: "Лайк убран"
   post:
     created: "Пост создан"
+    posts: "Посты"
+  
