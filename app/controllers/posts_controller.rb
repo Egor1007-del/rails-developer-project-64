@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
-  before_action :set_categories, only: %i[new create]
-
   def show
     @post = Post.find(params[:id])
 
@@ -16,11 +13,15 @@ class PostsController < ApplicationController
   end
 
   def new
+    authenticate_user!
     @post = current_user.posts.build
+    @categories = Category.order(:name)
   end
 
   def create
+    authenticate_user!
     @post = current_user.posts.build(post_params)
+    @categories = Category.order(:name)
 
     if @post.save
       redirect_to post_path(@post), notice: t('.success')

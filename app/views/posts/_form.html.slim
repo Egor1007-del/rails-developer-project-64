@@ -9,7 +9,7 @@
 
   .mb-3
     = f.association :category,
-        collection: @categories,
+        collection: categories,
         prompt:  t('posts.form.category_prompt'),
         label: t("activerecord.attributes.post.category")
 
