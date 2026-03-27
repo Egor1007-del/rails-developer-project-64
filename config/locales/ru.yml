@@ -29,7 +29,7 @@ ru:
 
     errors:
       messages:
-        too_short: "слишком короткое (минимум 10 символов)"
+        too_short: "слишком короткий (минимум 10 символов)"
       models:
         post:
           attributes:
