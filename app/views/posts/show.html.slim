@@ -45,6 +45,7 @@ h4.mt-3 = t('comments.index.title')
     = render "comments/comment",
       post: @post,
       comment: comment,
-      children: children
+      children: children,
+      comment_new: @comment
 - else
   p.text-muted = t('comments.show.no_comments')
