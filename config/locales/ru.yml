@@ -1,6 +1,6 @@
 ru:
   app:
-    name: "MyApp"
+    name: "Коллективный блог"
   auth:
     sign_in: "Войдите"
 

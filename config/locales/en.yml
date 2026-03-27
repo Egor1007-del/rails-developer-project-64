@@ -3,6 +3,8 @@
 # English, add the necessary files in this directory.
 
 en:
+  app:
+    name: "MyApp"
   comment:
     added: "Comment added"
   like:
