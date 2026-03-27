@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: t('.success')
     else
-      redirect_to post_path(@post), alert: @comment.errors.full_messages.first
+      flash[:error] = @comment.errors.full_messages.first
+      redirect_to post_path(@post)
     end
   end
 
