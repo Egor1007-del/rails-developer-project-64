@@ -1,5 +1,8 @@
 PORT?=3000
 RACK_ENV?=development
+
+.PHONY: dev install db-prepare start render-build render-start lint test ci
+
 dev: install db-prepare start
 
 install: 
@@ -12,7 +15,7 @@ db-prepare:
 
 start:
 	bin/dev
-	
+
 render-build:
 	bundle install
 	yarn install
