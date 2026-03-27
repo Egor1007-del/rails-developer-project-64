@@ -1,6 +1,18 @@
 PORT?=3000
 RACK_ENV?=development
+dev: install db-prepare start
 
+install: 
+	bundle install
+	yarn install
+
+db-prepare:
+	bin/rails db:prepare
+	bin/rails db:seed
+
+start:
+	bin/dev
+	
 render-build:
 	bundle install
 	yarn install
