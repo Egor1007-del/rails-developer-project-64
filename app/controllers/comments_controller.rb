@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
-
   def create
+    authenticate_user!
     @post = Post.find(params[:post_id])
 
     @comment = @post.comments.build(comment_params)
@@ -13,7 +12,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: t('.success')
     else
-      redirect_to post_path(@post), alert: @comment.errors.full_messages.to_sentence
+      redirect_to post_path(@post), alert: @comment.errors.full_messages.first
     end
   end
 
