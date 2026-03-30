@@ -1,24 +1,22 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :set_post
-
   def create
     authenticate_user!
-    @post.likes.find_or_create_by(user: current_user)
-    redirect_to post_path(@post)
+    post = Post.find(params[:post_id])
+
+    post.likes.find_or_create_by(user: current_user)
+
+    redirect_to post_path(post)
   end
 
   def destroy
     authenticate_user!
-    @like = current_user.likes.find_by(id: params[:id])
-    @like&.destroy
-    redirect_to post_path(@post), notice: t('.success')
-  end
+    post = Post.find_by(params[:post_id])
 
-  private
+    like = current_user.likes.find_by(id: params[:id])
+    like&.destroy
 
-  def set_post
-    @post = Post.find(params[:post_id])
+    redirect_to post_path(post), notice: t('.success')
   end
 end
