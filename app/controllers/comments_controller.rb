@@ -3,17 +3,17 @@
 class CommentsController < ApplicationController
   def create
     authenticate_user!
-    @post = Post.find(params[:post_id])
+    post = Post.find(params[:post_id])
 
-    @comment = @post.comments.build(comment_params)
+    comment = post.comments.build(comment_params)
 
-    @comment.user = current_user
+    comment.user = current_user
 
-    if @comment.save
-      redirect_to post_path(@post), notice: t('.success')
+    if comment.save
+      redirect_to post_path(post), notice: t('.success')
     else
-      flash[:error] = @comment.errors.full_messages.first
-      redirect_to post_path(@post)
+      flash[:error] = comment.errors.full_messages.first
+      redirect_to post_path(post)
     end
   end
 
