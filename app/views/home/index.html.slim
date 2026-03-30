@@ -13,7 +13,7 @@
               = [ t('posts.index.author', author: post.creator&.display_name || t('posts.index.anonymous')),
                 t('posts.index.category', category: post.category&.name || t('posts.index.without_category')),
                 l(post.created_at, format: :short)].join("  •  ")
-            p.card-text.mb-0 = truncate(post.body, length: 220)
+            p.card-text.mb-0 = post.preview
 - else
   .alert.alert-info.mb-0
     = t('posts.index.empty')
