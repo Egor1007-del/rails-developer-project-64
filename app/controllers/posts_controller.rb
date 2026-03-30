@@ -4,8 +4,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    @comment = PostComment.new
-    @comment.parent_id = params[:parent_id] if params[:parent_id].present?
+    @comment = user_signed_in? ? current_user.comments.build : PostComment.new
     @comments = @post.comments.includes(:user).arrange(order: { created_at: :desc })
 
     @user_like = user_signed_in? ? @post.likes.find_by(user: current_user) : nil
