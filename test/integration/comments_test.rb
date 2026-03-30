@@ -36,13 +36,13 @@ class CommentsTest < ActionDispatch::IntegrationTest
 
     assert_difference('PostComment.count', 1) do
       post post_comments_path(post_record), params: {
-        post_comment: { content: 'reply', parent_id: parent.id }
+        post_comment: { content: 'reply reply reply', parent_id: parent.id }
       }
     end
 
     comment = PostComment.order(:created_at).last
     assert_equal parent.id, comment.parent_id
-    assert_equal 'reply', comment.content
+    assert_equal 'reply reply reply', comment.content
     assert_response :redirect
   end
 
