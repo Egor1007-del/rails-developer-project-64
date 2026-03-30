@@ -12,7 +12,7 @@ class LikesController < ApplicationController
 
   def destroy
     authenticate_user!
-    post = Post.find_by(params[:post_id])
+    post = Post.find(params[:post_id])
 
     like = current_user.likes.find_by(id: params[:id])
     like&.destroy
