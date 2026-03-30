@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @comment.parent_id = params[:parent_id] if params[:parent_id].present?
     @comments = @post.comments.includes(:user).arrange(order: { created_at: :desc })
 
-    @liked_by_me = user_signed_in? && @post.likes.exists?(user_id: current_user.id)
+    @user_like = user_signed_in? ? @post.likes.find_by(user: current_user) : nil
     @likes_count = @post.likes_count
   end
 
