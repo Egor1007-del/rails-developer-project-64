@@ -49,34 +49,19 @@ git clone https://github.com/Egor1007-del/rails-developer-project-64.git
 cd rails-developer-project-64
 ```
 
-### 2. Установка зависимостей
+### 2. Установка зависимостей, настройка БД и запуск проекта
 
 ```bash
-bundle install
-yarn install
+make dev
 ```
 
-### 3. Настройка базы данных
-
-```bash
-rails db:create
-rails db:migrate
-rails db:seed
-```
-
-### 4. Запуск проекта
-
-```bash
-make render-start
-```
-
-### 5. Тесты
+### 3. Тесты
 
 ```bash
 make test
 ```
 
-### 6. Линтеры
+### 4. Линтеры
 
 ```bash
 make lint
