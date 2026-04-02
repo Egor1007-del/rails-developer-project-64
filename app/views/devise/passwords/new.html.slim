@@ -1,0 +1,27 @@
+.container.py-5
+  .row.justify-content-center
+    .col-12.col-md-8.col-lg-6
+      .card.shadow-sm.border-0
+        .card-body.p-4
+          h1.h3.mb-4 = t('.title')
+
+          = simple_form_for(resource,
+            as: resource_name,
+            url: password_path(resource_name),
+            html: { method: :post }) do |f|
+
+            = f.error_notification
+
+            .mb-3
+              = f.input :email,
+                label: t('.email'),
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: 'email', class: 'form-control' }
+
+            = f.button :submit,
+              t('.submit'),
+              class: 'btn btn-primary w-100'
+
+          .mt-3
+            = render 'devise/shared/links'
