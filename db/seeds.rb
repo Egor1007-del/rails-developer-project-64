@@ -18,9 +18,9 @@ end
 
 # == Users ==
 
-users = 5.times.map do |i|
+users = Array.new(5) do |i|
   user = User.find_or_create_by!(email: "user#{i + 1}@test.com") do |u|
-    u.password = "Password!123"
+    u.password = 'Password!123'
   end
 
   puts "CREATED USER: #{user.email}"
@@ -29,7 +29,7 @@ end
 
 # == Posts ==
 
-posts = 20.times.map do |i|
+posts = Array.new(20) do |i|
   post = Post.create!(
     title: "Тестовый пост ##{i + 1}",
     body: "Это тестовый текст поста номер #{i + 1}. " * 5,
@@ -43,7 +43,7 @@ end
 # == Comments ==
 
 posts.each do |post|
-  root_comment = rand(3..6).times.map do |i|
+  root_comment = Array.new(rand(3..6)) do |i|
     comment = post.comments.create!(
       content: "Комментарий #{i + 1} к посту #{post.id}",
       user: users.sample
@@ -54,7 +54,7 @@ posts.each do |post|
   end
 
   root_comment.each do |parent_comment|
-    rand(0..2).times do |i|
+    Array.new(rand(0..2)).times do |i|
       child_comment = post.comments.create!(
         content: "Ответ #{i + 1} на комментарий #{parent_comment.id}",
         user: users.sample,
