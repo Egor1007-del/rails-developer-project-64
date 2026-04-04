@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    @comment = user_signed_in? ? current_user.comments.build : PostComment.new
+    @comment = current_user&.comments&.build
     @comments = @post.comments.includes(:user).arrange(order: { created_at: :desc })
 
     @user_like = user_signed_in? ? @post.likes.find_by(user: current_user) : nil
