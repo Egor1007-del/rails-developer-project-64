@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   has_many :likes, class_name: 'PostLike', dependent: :destroy, inverse_of: :post
 
   validates :title, presence: true, length: { minimum: 3, maximum: 100 }
-  validates :body, presence: true, length: { minimum: 10, maximum: 500 }
+  validates :body, presence: true, length: { minimum: 10, maximum: 800 }
 
   def preview
     body.truncate(POST_PREVIEW_LENGTH)
