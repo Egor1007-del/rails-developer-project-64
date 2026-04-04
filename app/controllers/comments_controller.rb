@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     if comment.save
       redirect_to post_path(post), notice: t('.success')
     else
-      flash[:error] = comment.errors.full_messages.first
+      flash[:error] = comment.errors.full_messages.join('. ')
       redirect_to post_path(post)
     end
   end
