@@ -8,17 +8,22 @@ class PostsTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest cannot create post' do
-    assert_no_difference('Post.count') do
-      post posts_path, params: {
-        post: {
-          title: 'New title',
-          body: 'New body',
-          category_id: categories(:one).id
-        }
-      }
-    end
+    post_params = {
+      title: 'New title',
+      body: 'New body',
+      category_id: categories(:one).id
+    }
+
+    post posts_path, params: { post: post_params }
 
     assert_response :redirect
+
+    created_post = Post.find_by(
+      title: post_params[:title],
+      body: post_params[:body],
+      category_id: post_params[:category_id]
+    )
+    assert_nil created_post
   end
 
   test 'signed in user can access new post page' do
@@ -32,40 +37,45 @@ class PostsTest < ActionDispatch::IntegrationTest
   test 'signed in user can create post' do
     sign_in users(:one)
 
-    assert_difference('Post.count', 1) do
-      post posts_path, params: {
-        post: {
-          title: 'Test title Test title',
-          body: 'Test body Test body',
-          category_id: categories(:one).id
-        }
-      }
-    end
+    post_params = {
+      title: 'Test title Test title',
+      body: 'Test body Test body',
+      category_id: categories(:one).id
+    }
 
-    created_post = Post.order(:created_at).last
-
-    assert_equal 'Test title Test title', created_post.title
-    assert_equal 'Test body Test body', created_post.body
-    assert_equal categories(:one).id, created_post.category_id
-    assert_equal users(:one).id, created_post.creator_id
+    post posts_path, params: { post: post_params }
 
     assert_response :redirect
+    created_post = Post.find_by(
+      title: post_params[:title],
+      body: post_params[:body],
+      category_id: post_params[:category_id],
+      creator_id: users(:one).id
+    )
+    assert created_post
   end
 
   test 'signed in user cannot create invalid post' do
     sign_in users(:one)
 
-    assert_no_difference('Post.count') do
-      post posts_path, params: {
-        post: {
-          title: '',
-          body: '',
-          category_id: categories(:one).id
-        }
-      }
-    end
+    post_params = {
+      title: '',
+      body: '',
+      category_id: categories(:one).id
+    }
+
+    post posts_path, params: { post: post_params }
 
     assert_response :unprocessable_entity
+
+    created_post = Post.find_by(
+      title: post_params[:title],
+      body: post_params[:body],
+      category_id: post_params[:category_id],
+      creator_id: users(:one).id
+    )
+
+    assert_nil created_post
   end
 
   test 'user can view post show page' do

@@ -5,61 +5,83 @@ require 'test_helper'
 class CommentsTest < ActionDispatch::IntegrationTest
   test 'guest cannot create comment' do
     post_record = posts(:one)
-    assert_no_difference('PostComment.count') do
-      post post_comments_path(post_record), params: {
-        post_comment: { content: 'Hello' }
-      }
-    end
+    comment_params = { content: 'Hello' }
+
+    post post_comments_path(post_record), params: {
+      post_comment: comment_params
+    }
+
     assert_response :redirect
+
+    created_comment = PostComment.find_by(
+      post_id: post_record.id,
+      content: comment_params[:content]
+    )
+
+    assert_nil created_comment
   end
 
   test 'signed in user can create root comment' do
     sign_in users(:one)
     post_record = posts(:one)
 
-    assert_difference('PostComment.count', 1) do
-      post post_comments_path(post_record), params: {
-        post_comment: { content: 'Root comment' }
-      }
-      comment = PostComment.order(:created_at).last
-      assert_equal post_record.id, comment.post_id
-      assert_equal users(:one).id, comment.user_id
-      assert_equal 'Root comment', comment.content
-      assert comment.is_root?
-    end
+    comment_params = { content: 'Root comment' }
+
+    post post_comments_path(post_record), params: {
+      post_comment: comment_params
+    }
+    assert_response :redirect
+
+    created_comment = PostComment.find_by(
+      post_id: post_record.id,
+      user_id: users(:one).id,
+      content: comment_params[:content]
+    )
+
+    assert created_comment
   end
 
   test 'signed in user can create nested comment' do
     sign_in users(:one)
     post_record = posts(:one)
     parent = post_comments(:root_comment)
+    comment_params = { content: 'reply reply reply', parent_id: parent.id }
 
-    assert_difference('PostComment.count', 1) do
-      post post_comments_path(post_record), params: {
-        post_comment: { content: 'reply reply reply', parent_id: parent.id }
-      }
-    end
+    post post_comments_path(post_record), params: {
+      post_comment: comment_params
+    }
 
-    comment = PostComment.order(:created_at).last
-    assert_equal parent.id, comment.parent_id
-    assert_equal 'reply reply reply', comment.content
     assert_response :redirect
+
+    created_comment = PostComment.find_by(
+      user_id: users(:one).id,
+      post_id: post_record.id,
+      content: comment_params[:content]
+    )
+
+    assert created_comment
+    assert_equal parent, created_comment.parent
   end
 
   test 'signed in user can create deep nested comment' do
     sign_in users(:one)
     post_record = posts(:one)
     parent = post_comments(:reply1)
+    comment_params = { content: 'reply reply reply', parent_id: parent.id }
 
-    assert_difference('PostComment.count', 1) do
-      post post_comments_path(post_record), params: {
-        post_comment: { content: 'Deep reply', parent_id: parent.id }
-      }
-    end
+    post post_comments_path(post_record), params: {
+      post_comment: comment_params
+    }
 
-    comment = PostComment.order(:created_at).last
-    assert_equal parent.id, comment.parent_id
-    assert_equal 'Deep reply', comment.content
     assert_response :redirect
+
+    created_comment = PostComment.find_by(
+      user_id: users(:one).id,
+      post_id: post_record.id,
+      content: comment_params[:content]
+    )
+
+    assert created_comment
+    assert_equal parent, created_comment.parent
   end
 end

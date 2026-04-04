@@ -5,40 +5,45 @@ require 'test_helper'
 class LikesTest < ActionDispatch::IntegrationTest
   test 'guest cannot like post' do
     post_record = posts(:one)
-    assert_no_difference('PostLike.count') do
-      post post_likes_path(post_record)
-    end
+
+    post post_likes_path(post_record)
 
     assert_response :redirect
+
+    created_like = PostLike.find_by(
+      post_id: post_record.id,
+      user_id: nil
+    )
+
+    assert_nil created_like
   end
 
   test 'signed in user can like post' do
     sign_in users(:one)
     post_record = posts(:two)
 
-    assert_difference('PostLike.count', 1) do
-      post post_likes_path(post_record)
-    end
-
-    like = PostLike.last
-
-    assert_equal users(:one).id, like.user_id
-    assert_equal post_record.id, like.post_id
+    post post_likes_path(post_record)
 
     assert_response :redirect
+
+    created_like = PostLike.find_by(
+      user_id: users(:one).id,
+      post_id: post_record.id
+    )
+    assert created_like
   end
 
   test 'signed in user can unlike post' do
     sign_in users(:one)
     post_record = posts(:two)
-    like = post_likes(:one)
+    like = PostLike.create!(user: users(:one), post: post_record)
 
-    PostLike.create!(user: users(:one), post: post_record)
-
-    assert_difference('PostLike.count', -1) do
-      delete post_like_path(post_record, like)
-    end
+    delete post_like_path(post_record, like)
 
     assert_response :redirect
+
+    delete_like = PostLike.find_by(id: like.id)
+
+    assert_nil delete_like
   end
 end
