@@ -6,6 +6,7 @@ ru:
 
   activerecord:
     models:
+      user: "Пользователь"
       post: "Пост"
       category: "Категория"
       post_comment: "Комментарий"
@@ -13,8 +14,11 @@ ru:
     attributes:
       user:
         email: "Электронная почта"
-        password: "Пароль"
         remember_me: "Запомнить меня"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        
+
 
       post:
         title: "Заголовок"
@@ -29,6 +33,10 @@ ru:
 
     errors:
       messages:
+        invalid: "имеет неверный формат"
+        confirmation: "не совпадает с подтверждением"
+        blank: "не может быть пустым"
+
         too_short: "слишком короткий (минимум 10 символов)"
       models:
         post:
