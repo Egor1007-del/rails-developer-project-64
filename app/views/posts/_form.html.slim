@@ -2,10 +2,10 @@
   = f.error_notification
 
   .mb-3
-    = f.input :title, label: t("activerecord.attributes.post.title"), required: false
+    = f.input :title, label: t("activerecord.attributes.post.title")
 
   .mb-3
-    = f.input :body, as: :text, input_html: { rows: 6 }, label: t('activerecord.attributes.post.body'), required: false
+    = f.input :body, as: :text, input_html: { rows: 6 }, label: t('activerecord.attributes.post.body')
 
   .mb-3
     = f.association :category,
