@@ -13,8 +13,7 @@
             .small.text-muted.mb-2
               = [ t('posts.index.likes', likes: post.likes_count),
                 t('posts.index.author', author: post.creator&.display_name || t('posts.index.anonymous')),
-                l(post.created_at, format: :short)].join("  •  ")
-            
+                l(post.created_at, format: :short)].join("  •  ") 
 - else
   .alert.alert-info.mb-0
     = t('posts.index.empty')
