@@ -54,7 +54,7 @@ posts.each do |post|
   end
 
   root_comment.each do |parent_comment|
-    Array.new(rand(0..2)).times do |i|
+    Array.new(rand(0..2)) do |i|
       child_comment = post.comments.create!(
         content: "Ответ #{i + 1} на комментарий #{parent_comment.id}",
         user: users.sample,
