@@ -131,6 +131,8 @@ ru:
       back: "<< Назад к списку"
       author: "Автор: %{author}"
       category: "Категория: %{category}"
+      like: "♡"
+      unlike: "♥"
     create:
       success: "Пост создан"
 

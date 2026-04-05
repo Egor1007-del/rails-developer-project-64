@@ -13,16 +13,16 @@ h1.h3.mb-2 = @post.title
       l(@post.created_at, format: :long)].join(' • ')
   .d-flex.align-items-center.gap-2
     span.text-muted.small
-      |♥
+      |
       =< @likes_count
     - if user_signed_in?
       - if @user_like
-        = button_to "♥",
+        = button_to t('posts.show.unlike'),
           post_like_path(@post, @user_like),
           method: :delete,
           class: "btn btn-sm btn-outline-danger"
       - else
-        = button_to "♡",
+        = button_to t('posts.show.like'),
           post_likes_path(@post),
           method: :post,
           class: "btn btn-sm btn-outline-secondary"
