@@ -120,6 +120,7 @@ ru:
       anonymous: "Аноним"
       without_category: "Без категории"
       empty: "Пока нет постов."
+      likes: "Понравилось: %{likes}"
     form:
       category_prompt: "Выберите категорию"
       submit: "Сохранить"

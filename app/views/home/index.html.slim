@@ -9,11 +9,11 @@
           .card-body
             h5.card-title.mb-1
               = link_to post.title, post_path(post), class: "fw-bold text-dark text-decoration-none"
-            .small.text-muted.mb-2
-              = [ t('posts.index.author', author: post.creator&.display_name || t('posts.index.anonymous')),
-                t('posts.index.category', category: post.category&.name || t('posts.index.without_category')),
-                l(post.created_at, format: :short)].join("  •  ")
             p.card-text.mb-0 = post.preview
+            .small.text-muted.mb-2
+              = [ t('posts.index.likes', likes: post.likes_count), t('posts.index.author', author: post.creator&.display_name || t('posts.index.anonymous')),
+                l(post.created_at, format: :short)].join("  •  ")
+            
 - else
   .alert.alert-info.mb-0
     = t('posts.index.empty')

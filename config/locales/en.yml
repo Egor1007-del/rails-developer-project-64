@@ -1,14 +1,136 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-
 en:
   app:
-    name: "MyApp"
-  comment:
-    added: "Comment added"
-  like:
-    create: "Liked"
-    removed: "Like removed"
-  post:
-    created: "Post created"
+    name: "Collective Blog"
+
+  auth:
+    sign_in: "Sign in"
+
+  activerecord:
+    models:
+      user: "User"
+      post: "Post"
+      category: "Category"
+      post_comment: "Comment"
+
+    attributes:
+      user:
+        email: "Email"
+        remember_me: "Remember me"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+
+      post:
+        title: "Title"
+        body: "Content"
+        category: "Category"
+
+      category:
+        name: "Name"
+
+      post_comment:
+        content: "Comment"
+
+    errors:
+      messages:
+        invalid: "is invalid"
+        confirmation: "doesn't match confirmation"
+        blank: "can't be blank"
+        too_short: "is too short (minimum is %{count} characters)"
+
+      models:
+        post:
+          attributes:
+            title:
+              blank: "can't be blank"
+              too_short: "is too short (minimum is %{count} characters)"
+              too_long: "is too long (maximum is %{count} characters)"
+            body:
+              blank: "can't be blank"
+              too_long: "is too long (maximum is %{count} characters)"
+            category:
+              required: "must be selected"
+
+        post_comment:
+          attributes:
+            content:
+              blank: "can't be blank"
+              too_short: "is too short (minimum is %{count} characters)"
+              too_long: "is too long (maximum is %{count} characters)"
+
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M"
+      long: "%d %B %Y, %H:%M"
+
+  date:
+    month_names:
+      -
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+
+  comments:
+    reply: "Reply"
+    reply_placeholder: "Reply..."
+    submit: "Leave a comment"
+    cancel: "Cancel"
+
+    index:
+      title: "Comments"
+
+    form:
+      placeholder: "Comment"
+      submit: "Submit"
+
+    show:
+      sign_in_to_comment: "to leave a comment"
+      no_comments: "No comments yet..."
+
+    create:
+      success: "Comment added"
+
+  posts:
+    index:
+      title: "Posts"
+      author: "Author: %{author}"
+      category: "Category: %{category}"
+      anonymous: "Anonymous"
+      without_category: "No category"
+      empty: "No posts yet."
+      likes: "Likes: %{likes}"
+
+    form:
+      category_prompt: "Select a category"
+      submit: "Save"
+
+    new:
+      back: "Back"
+      title: "New post"
+
+    show:
+      back: "<< Back to list"
+      author: "Author: %{author}"
+      category: "Category: %{category}"
+
+    create:
+      success: "Post created"
+
+  likes:
+    destroy:
+      success: "Like removed"
+
+  nav:
+    new_post: "New post"
+    sign_out: "Sign out"
+    sign_in: "Sign in"
+    sign_up: "Sign up"
+    confirm: "Are you sure?"
