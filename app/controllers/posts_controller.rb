@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @comment = current_user&.comments&.build
     @comments = @post.comments.includes(:user).arrange(order: { created_at: :desc })
 
-    @user_like = user_signed_in? ? @post.likes.find_by(user: current_user) : nil
+    @user_like = @post.likes.find_by(user: current_user)
     @likes_count = @post.likes_count
   end
 
