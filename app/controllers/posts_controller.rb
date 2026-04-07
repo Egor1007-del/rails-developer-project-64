@@ -34,8 +34,4 @@ class PostsController < ApplicationController
   def post_params
     params.expect(post: %i[title body category_id])
   end
-
-  def set_categories
-    @categories = Category.order(:name)
-  end
 end
