@@ -11,14 +11,14 @@ class CommentsTest < ActionDispatch::IntegrationTest
       post_comment: comment_params
     }
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_comment = PostComment.find_by(
       post_id: post_record.id,
       content: comment_params[:content]
     )
 
-    assert_nil created_comment
+    assert { created_comment.nil? }
   end
 
   test 'signed in user can create root comment' do
@@ -30,7 +30,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
     post post_comments_path(post_record), params: {
       post_comment: comment_params
     }
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_comment = PostComment.find_by(
       post_id: post_record.id,
@@ -38,7 +38,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
       content: comment_params[:content]
     )
 
-    assert created_comment
+    assert { created_comment }
   end
 
   test 'signed in user can create nested comment' do
@@ -51,7 +51,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
       post_comment: comment_params
     }
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_comment = PostComment.find_by(
       user_id: users(:one).id,
@@ -59,8 +59,8 @@ class CommentsTest < ActionDispatch::IntegrationTest
       content: comment_params[:content]
     )
 
-    assert created_comment
-    assert_equal parent, created_comment.parent
+    assert { created_comment }
+    assert { parent == created_comment.parent }
   end
 
   test 'signed in user can create deep nested comment' do
@@ -73,7 +73,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
       post_comment: comment_params
     }
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_comment = PostComment.find_by(
       user_id: users(:one).id,
@@ -81,7 +81,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
       content: comment_params[:content]
     )
 
-    assert created_comment
-    assert_equal parent, created_comment.parent
+    assert { created_comment }
+    assert { parent == created_comment.parent }
   end
 end

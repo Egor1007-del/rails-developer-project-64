@@ -4,7 +4,7 @@ class PostsTest < ActionDispatch::IntegrationTest
   test 'guest cannot access new post page' do
     get new_post_path
 
-    assert_response :redirect
+    assert { response.redirect? }
   end
 
   test 'guest cannot create post' do
@@ -16,14 +16,14 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     post posts_path, params: { post: post_params }
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_post = Post.find_by(
       title: post_params[:title],
       body: post_params[:body],
       category_id: post_params[:category_id]
     )
-    assert_nil created_post
+    assert { created_post.nil? }
   end
 
   test 'signed in user can access new post page' do
@@ -31,7 +31,7 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     get new_post_path
 
-    assert_response :success
+    assert { response.successful? }
   end
 
   test 'signed in user can create post' do
@@ -45,14 +45,15 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     post posts_path, params: { post: post_params }
 
-    assert_response :redirect
+    assert { response.redirect? }
+
     created_post = Post.find_by(
       title: post_params[:title],
       body: post_params[:body],
       category_id: post_params[:category_id],
       creator_id: users(:one).id
     )
-    assert created_post
+    assert { created_post }
   end
 
   test 'signed in user cannot create invalid post' do
@@ -66,7 +67,7 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     post posts_path, params: { post: post_params }
 
-    assert_response :unprocessable_entity
+    assert { response.status == 422  }
 
     created_post = Post.find_by(
       title: post_params[:title],
@@ -75,12 +76,12 @@ class PostsTest < ActionDispatch::IntegrationTest
       creator_id: users(:one).id
     )
 
-    assert_nil created_post
+    assert { created_post.nil? }
   end
 
   test 'user can view post show page' do
     get post_path(posts(:one))
 
-    assert_response :success
+    assert { response.successful? }
   end
 end

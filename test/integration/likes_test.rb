@@ -8,14 +8,14 @@ class LikesTest < ActionDispatch::IntegrationTest
 
     post post_likes_path(post_record)
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_like = PostLike.find_by(
       post_id: post_record.id,
       user_id: nil
     )
 
-    assert_nil created_like
+    assert { created_like.nil? }
   end
 
   test 'signed in user can like post' do
@@ -24,13 +24,13 @@ class LikesTest < ActionDispatch::IntegrationTest
 
     post post_likes_path(post_record)
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     created_like = PostLike.find_by(
       user_id: users(:one).id,
       post_id: post_record.id
     )
-    assert created_like
+    assert { created_like }
   end
 
   test 'signed in user can unlike post' do
@@ -40,10 +40,10 @@ class LikesTest < ActionDispatch::IntegrationTest
 
     delete post_like_path(post_record, like)
 
-    assert_response :redirect
+    assert { response.redirect? }
 
     delete_like = PostLike.find_by(id: like.id)
 
-    assert_nil delete_like
+    assert { delete_like.nil? }
   end
 end
