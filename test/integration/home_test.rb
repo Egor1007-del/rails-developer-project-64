@@ -13,6 +13,6 @@ class HomeTest < ActionDispatch::IntegrationTest
     get root_path
 
     assert { response.status == 200 }
-    assert { response.body.include?(I18n.t("posts.index.title")) }
+    assert { response.body.include?(I18n.t('posts.index.title')) }
   end
 end
