@@ -10,10 +10,10 @@ class CommentsController < ApplicationController
     comment.user = current_user
 
     if comment.save
-      redirect_to post_path(post), notice: t('.success')
+      redirect_to post, notice: t('.success')
     else
       flash[:error] = comment.errors.full_messages.join('. ')
-      redirect_to post_path(post)
+      redirect_to post
     end
   end
 

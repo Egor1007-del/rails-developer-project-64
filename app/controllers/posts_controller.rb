@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @categories = Category.order(:name)
 
     if @post.save
-      redirect_to post_path(@post), notice: t('.success')
+      redirect_to @post, notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
